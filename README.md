@@ -1,12 +1,15 @@
 # fatapi-template
+## Setup
+`docker compose up`
+
 ## Lint
-`docker compose exec api poetry run ruff check`
+`docker compose exec api uv run ruff check`
 
 ## format
 check  
-`docker compose exec api poetry run ruff format --check`  
+`docker compose exec api uv run ruff format --check`  
 run  
-`docker compose exec api poetry run ruff format`  
+`docker compose exec api uv run ruff format`  
 
 ## migration
 create migration file  
