@@ -17,10 +17,9 @@ template = """
 """
 
 # テンプレート文章にあるチェック対象の単語を変数化
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "あなたは優秀な校正者です。"),
-    ("user", template)
-])
+prompt = ChatPromptTemplate.from_messages(
+    [("system", "あなたは優秀な校正者です。"), ("user", template)]
+)
 
 # チャットメッセージを文字列に変換するための出力解析インスタンスを作成
 output_parser = StrOutputParser()
