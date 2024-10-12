@@ -1,4 +1,7 @@
 # fatapi-template
+## Setup
+`docker compose up`
+
 ## Lint
 `docker compose exec api poetry run ruff check`
 
