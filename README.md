@@ -1,4 +1,8 @@
 # fatapi-template
+## 概要
+LLMとチャットができるアプリ  
+フロントは以下リポジトリ  
+https://github.com/nakajima97/llm-chat-app-front
 ## Setup
 `docker compose up`
 
