@@ -17,9 +17,9 @@ jobs:
 
       - name: Install poetry
         run: |
-          pip install poetry
-          poetry install --no-root
+          pip install uv
+          uv sync --frozen --no-install-project --no-dev
 
       - name: Run API test
         run: |
-          poetry run pytest
+          uv run pytest
