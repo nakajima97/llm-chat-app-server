@@ -24,6 +24,6 @@ async def get_chat_sse(request=Depends(ChatRequest)):
     SSEで回答する
     """
     text = request.text
-    stream = stream_generate()
+    stream = stream_generate(text)
 
     return StreamingResponse(stream, media_type="text/plain")

@@ -12,18 +12,15 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 model = ChatOpenAI(model="gpt-4o-mini")
 
 # プロンプトのテンプレート文章を定義
-prompt = ChatPromptTemplate.from_template("質問に回答してください")
+prompt = ChatPromptTemplate.from_template("{question}")
 
 # 出力パーサーを定義
 parser = StrOutputParser()
 
 # astreamを用いてストリームする
-async def stream_generate():
+async def stream_generate(question: str):
     # プロンプトとモデル、パーサーをチェーン化する
     chain = prompt | model | parser
-
-    # 質問を指定
-    question = "東京の天気は？"
 
     # astreamでストリーミングを開始
     async for chunk in chain.astream({"question": question}):
