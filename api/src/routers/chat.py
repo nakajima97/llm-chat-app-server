@@ -18,6 +18,7 @@ async def get_chat(request=Depends(ChatRequest)):
 
     return {"chat": message}
 
+
 @router.get("/chat/sse", tags=["chat"])
 async def get_chat_sse(request=Depends(ChatRequest)):
     """

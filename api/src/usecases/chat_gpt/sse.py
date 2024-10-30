@@ -17,6 +17,7 @@ prompt = ChatPromptTemplate.from_template("{question}")
 # 出力パーサーを定義
 parser = StrOutputParser()
 
+
 # astreamを用いてストリームする
 async def stream_generate(question: str):
     # プロンプトとモデル、パーサーをチェーン化する
@@ -25,4 +26,4 @@ async def stream_generate(question: str):
     # astreamでストリーミングを開始
     async for chunk in chain.astream({"question": question}):
         # 出力結果をコンソールに出力
-      yield chunk
+        yield chunk
