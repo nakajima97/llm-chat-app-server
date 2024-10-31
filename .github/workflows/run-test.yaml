@@ -21,5 +21,7 @@ jobs:
           uv sync --frozen --no-install-project --no-dev
 
       - name: Run API test
+        env:
+          OPENAI_API_KEY: ${{env.OPENAI_API_KEY}}
         run: |
           uv run pytest
