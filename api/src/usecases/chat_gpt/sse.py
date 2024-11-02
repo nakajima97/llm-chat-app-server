@@ -7,18 +7,21 @@ from src.config import Config
 
 
 
-# チャットモデルのインスタンスを作成
-model = ChatOpenAI(openai_api_key=Config.OPENAI_API_KEY, model="gpt-4o-mini")
-
-# プロンプトのテンプレート文章を定義
-prompt = ChatPromptTemplate.from_template("{question}")
-
-# 出力パーサーを定義
-parser = StrOutputParser()
-
-
 # astreamを用いてストリームする
 async def stream_generate(question: str):
+    """
+    OpenAIのGPT-4o-miniを使って文章をstreamで生成する
+    """
+
+    # チャットモデルのインスタンスを作成
+    model = ChatOpenAI(openai_api_key=Config.OPENAI_API_KEY, model="gpt-4o-mini")
+
+    # プロンプトのテンプレート文章を定義
+    prompt = ChatPromptTemplate.from_template("{question}")
+
+    # 出力パーサーを定義
+    parser = StrOutputParser()
+
     # プロンプトとモデル、パーサーをチェーン化する
     chain = prompt | model | parser
 
