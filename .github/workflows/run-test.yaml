@@ -23,5 +23,6 @@ jobs:
       - name: Run API test
         env:
           OPENAI_API_KEY: ${{env.OPENAI_API_KEY}}
+          CORS_ORIGIN: ${{env.CORS_ORIGIN}}
         run: |
           uv run pytest
