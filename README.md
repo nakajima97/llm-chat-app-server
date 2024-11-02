@@ -17,13 +17,13 @@ run
 
 ## migration
 create migration file  
-`docker compose exec api alembic revision --autogenerate -m "create initial table"`  
+`docker compose exec api uv run alembic revision --autogenerate -m "create initial table"`  
 
 exec migration  
-`docker compose exec api alembic upgrade head`  
+`docker compose exec api uv run alembic upgrade head`  
 
 init migration  
-`docker compose exec api alembic downgrade base`  
+`docker compose exec api uv run alembic downgrade base`  
 
 ## seeder
 `docker compose exec api uv run -m src.seeders.role`

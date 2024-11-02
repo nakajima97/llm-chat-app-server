@@ -5,6 +5,9 @@ from sqlalchemy.sql import func
 import uuid
 from src.db import Base
 
+# これがないとRoleが見つからないとエラーが出る
+from src.models.role import Role  # noqa
+
 
 class ChatHistory(Base):
     __tablename__ = "chat_histories"
