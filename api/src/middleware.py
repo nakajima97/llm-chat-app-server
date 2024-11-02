@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 CORS_ORIGIN = os.environ.get("CORS_ORIGIN")
 
+
 def add_cors_middleware(app: FastAPI):
     # 許可するオリジンのリスト
     origins = CORS_ORIGIN.split(",")
