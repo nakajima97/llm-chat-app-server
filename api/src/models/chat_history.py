@@ -2,8 +2,10 @@ from sqlalchemy import Column, ForeignKey, Text, TIMESTAMP, BigInteger
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 import uuid
 from src.db import Base
+from src.models.role import Role
 
 
 class ChatHistory(Base):
@@ -13,8 +15,8 @@ class ChatHistory(Base):
     role_id = Column(BigInteger, ForeignKey('roles.id'), nullable=False)
     chat_room_id = Column(UUID(as_uuid=True), ForeignKey('chat_rooms.id'), nullable=False)
     message = Column(Text, nullable=False)
-    created_at = Column(TIMESTAMP, nullable=False)
-    updated_at = Column(TIMESTAMP, nullable=False)
+    created_at = Column(TIMESTAMP, nullable=False, server_default=func.now())
+    updated_at = Column(TIMESTAMP, nullable=False, server_default=func.now(), onupdate=func.now())
     
     role = relationship('Role')
     chat_room = relationship('ChatRoom')
