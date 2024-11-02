@@ -1,10 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.models.role import Role
-from src.db import db_session  # 修正
+from src.db import db_session
+from src.constants import ChatRoleId
 
 
 async def seed_roles(db: AsyncSession):
-    roles = [{"id": 1, "name": "assistant"}, {"id": 2, "name": "user"}]
+    roles = [{"id": ChatRoleId.ASSISTANT, "name": "assistant"}, {"id": ChatRoleId.USER, "name": "user"}]
 
     for role in roles:
         new_role = Role(id=role["id"], name=role["name"])

@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
 from src.db import Base
+from src.models.role import Role
 
 
 class ChatHistory(Base):
