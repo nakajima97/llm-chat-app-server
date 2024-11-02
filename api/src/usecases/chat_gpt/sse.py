@@ -4,6 +4,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from src.config import Config
+from src.services.openai_service import get_chat_model
 
 
 
@@ -14,7 +15,7 @@ async def stream_generate(question: str):
     """
 
     # チャットモデルのインスタンスを作成
-    model = ChatOpenAI(openai_api_key=Config.OPENAI_API_KEY, model="gpt-4o-mini")
+    model = get_chat_model()
 
     # プロンプトのテンプレート文章を定義
     prompt = ChatPromptTemplate.from_template("{question}")
