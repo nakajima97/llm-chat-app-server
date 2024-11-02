@@ -8,16 +8,15 @@ services:
     environment:
       - WATCHFILES_FORCE_POLLING=true # ホットリロードのための設定
     depends_on:
-      - mysql
-  mysql:
-    image: mysql:8.0
+      - postgres
+  postgres:
+    image: postgres:17.0
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      POSTGRES_DB: mydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
       TZ: 'Asia/Tokyo'
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./postgres:/var/lib/postgresql/data
