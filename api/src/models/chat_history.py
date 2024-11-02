@@ -4,7 +4,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
 from src.db import Base
-from src.models.role import Role
+# これがないとRoleが見つからないとエラーが出る
+from src.models.role import Role # noqa
 
 
 class ChatHistory(Base):

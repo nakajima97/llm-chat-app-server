@@ -1,9 +1,5 @@
-import os
-from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from src.config import Config
 from src.services.openai_service import get_chat_model
 
 
