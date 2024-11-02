@@ -7,7 +7,6 @@ from src.config import Config
 from src.services.openai_service import get_chat_model
 
 
-
 # astreamを用いてストリームする
 async def stream_generate(question: str):
     """

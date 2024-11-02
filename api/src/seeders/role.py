@@ -5,7 +5,10 @@ from src.constants import ChatRoleId
 
 
 async def seed_roles(db: AsyncSession):
-    roles = [{"id": ChatRoleId.ASSISTANT, "name": "assistant"}, {"id": ChatRoleId.USER, "name": "user"}]
+    roles = [
+        {"id": ChatRoleId.ASSISTANT, "name": "assistant"},
+        {"id": ChatRoleId.USER, "name": "user"},
+    ]
 
     for role in roles:
         new_role = Role(id=role["id"], name=role["name"])

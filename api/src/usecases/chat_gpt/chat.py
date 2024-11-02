@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from src.config import Config
 from src.services.openai_service import get_chat_model
 
+
 def chat_gpt(sentence):
     """
     OpenAIのGPT-4o-miniを使って文章を生成する
