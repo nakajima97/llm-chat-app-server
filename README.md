@@ -24,3 +24,6 @@ exec migration
 
 init migration  
 `docker compose exec api alembic downgrade base`  
+
+## seeder
+`docker compose exec api uv run -m src.seeders.role`
