@@ -25,7 +25,8 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
         chat_room_id = new_chat_room.id
 
     # Insert into chat_histories table
-    await create_chat_history(db, chat_room_id, message)
+    await create_chat_history(db, chat_room_id, text, 2)
+    await create_chat_history(db, chat_room_id, message, 1)
 
     return {"chat": message}
 
