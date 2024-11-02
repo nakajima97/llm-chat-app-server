@@ -1,6 +1,5 @@
 from sqlalchemy import Column, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
 import uuid
 from src.db import Base

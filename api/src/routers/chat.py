@@ -5,8 +5,6 @@ from src.schemes.chat import ChatRequest
 from src.usecases.chat_gpt.chat import chat_gpt
 from src.usecases.chat_gpt.sse import stream_generate
 from src.db import get_db
-from src.repositories.chat_room import create_chat_room
-from src.repositories.chat_history import create_chat_history
 from src.usecases.chat_history.save import save_chat_history
 
 router = APIRouter()

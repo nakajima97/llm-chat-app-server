@@ -1,11 +1,9 @@
 from sqlalchemy import Column, ForeignKey, Text, TIMESTAMP, BigInteger
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
 from src.db import Base
-from src.models.role import Role
 
 
 class ChatHistory(Base):
