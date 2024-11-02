@@ -1,10 +1,10 @@
-from sqlalchemy import Column, ForeignKey, Text, TIMESTAMP
+from sqlalchemy import Column, ForeignKey, Text, TIMESTAMP, BigInteger
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 import uuid
+from src.db import Base
 
-Base = declarative_base()
 
 class ChatHistory(Base):
     __tablename__ = 'chat_histories'

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, BigInteger, Text
 from sqlalchemy.ext.declarative import declarative_base
+from src.db import Base
 
-Base = declarative_base()
 
 class Role(Base):
     __tablename__ = 'roles'
