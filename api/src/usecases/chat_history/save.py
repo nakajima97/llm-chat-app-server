@@ -2,7 +2,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.repositories.chat_room import create_chat_room
 from src.repositories.chat_history import create_chat_history
 
-async def save_chat_history(db: AsyncSession, chat_room_id: int | None, text: str, message: str) -> None:
+
+async def save_chat_history(
+    db: AsyncSession, chat_room_id: int | None, text: str, message: str
+) -> None:
     """
     チャット履歴を保存する
     """

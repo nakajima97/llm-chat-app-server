@@ -11,6 +11,7 @@ from src.usecases.chat_history.save import save_chat_history
 
 router = APIRouter()
 
+
 @router.get("/chat", tags=["chat"])
 async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)):
     """
@@ -23,6 +24,7 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
     await save_chat_history(db, chat_room_id, text, message)
 
     return {"chat": message}
+
 
 @router.get("/chat/sse", tags=["chat"])
 async def get_chat_sse(request=Depends(ChatRequest)):
