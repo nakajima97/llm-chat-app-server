@@ -10,6 +10,11 @@ from src.db import Base
 import os
 from dotenv import load_dotenv
 
+# alembicのマイグレーションでモデルを認識してくれないので、ここでモデルをimportしておく
+from src.models.chat_thread import ChatThreads  # noqa
+from src.models.chat_message import ChatMessage  # noqa
+from src.models.role import Role  # noqa
+
 load_dotenv()
 
 # this is the Alembic Config object, which provides

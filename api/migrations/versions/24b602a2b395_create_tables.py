@@ -24,6 +24,7 @@ def upgrade() -> None:
     op.create_table(
         "chat_threads",
         sa.Column("id", sa.UUID(), nullable=False),
+        sa.Column("title", sa.String(), nullable=False),
         sa.Column("created_at", sa.TIMESTAMP(), nullable=False),
         sa.Column("updated_at", sa.TIMESTAMP(), nullable=False),
         sa.PrimaryKeyConstraint("id"),
