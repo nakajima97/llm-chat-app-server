@@ -25,11 +25,20 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
 
 
 @router.get("/chat/sse", tags=["chat"])
-async def get_chat_sse(request=Depends(ChatRequest)):
+async def get_chat_sse(request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)):
     """
     SSEで回答する
     """
     text = request.text
+    chat_room_id = request.chat_room_id
     stream = stream_generate(text)
 
-    return StreamingResponse(stream, media_type="text/plain")
+    async def event_generator():
+        response = ""
+        async for chunk in stream:
+            response += chunk
+            yield chunk
+        # Save chat history after streaming is done
+        await save_chat_history(db, chat_room_id, text, response)
+
+    return StreamingResponse(event_generator(), media_type="text/plain")
