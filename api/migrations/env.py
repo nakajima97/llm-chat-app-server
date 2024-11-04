@@ -39,6 +39,7 @@ config.set_section_option("alembic", "DB_PASSWORD", os.environ.get("DB_PASSWORD"
 config.set_section_option("alembic", "DB_NAME", os.environ.get("DB_NAME"))
 config.set_section_option("alembic", "DB_PORT", os.environ.get("DB_PORT"))
 
+
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
 
