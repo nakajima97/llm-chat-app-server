@@ -3,7 +3,7 @@ from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.schemes.chat import ChatRequest
 from src.usecases.chat_gpt.chat import chat_gpt
-from src.usecases.chat_gpt.sse import stream_generate
+from src.usecases.chat_gpt.sse import stream_generator
 from src.db import get_db
 from src.usecases.chat_history.save import save_chat_history
 
@@ -25,11 +25,23 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
 
 
 @router.get("/chat/sse", tags=["chat"])
-async def get_chat_sse(request=Depends(ChatRequest)):
+async def get_chat_sse(
+    request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)
+):
     """
     SSEで回答する
     """
     text = request.text
-    stream = stream_generate(text)
+    chat_room_id = request.chat_room_id
+    stream = stream_generator(text)
 
-    return StreamingResponse(stream, media_type="text/plain")
+    # DBにチャット履歴を保存するためにstreamをイベントジェネレータに変換
+    async def event_generator():
+        response = ""
+        async for chunk in stream:
+            response += chunk
+            yield chunk
+        # streamが終了したらDBにチャット履歴を保存
+        await save_chat_history(db, chat_room_id, text, response)
+
+    return StreamingResponse(event_generator(), media_type="text/plain")
