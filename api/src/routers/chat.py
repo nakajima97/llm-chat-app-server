@@ -25,7 +25,9 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
 
 
 @router.get("/chat/sse", tags=["chat"])
-async def get_chat_sse(request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)):
+async def get_chat_sse(
+    request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)
+):
     """
     SSEで回答する
     """
