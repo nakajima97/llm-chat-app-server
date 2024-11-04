@@ -9,13 +9,13 @@ from src.db import Base
 from src.models.role import Role  # noqa
 
 
-class ChatHistory(Base):
-    __tablename__ = "chat_histories"
+class ChatMessage(Base):
+    __tablename__ = "chat_messages"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     role_id = Column(BigInteger, ForeignKey("roles.id"), nullable=False)
     chat_room_id = Column(
-        UUID(as_uuid=True), ForeignKey("chat_rooms.id"), nullable=False
+        UUID(as_uuid=True), ForeignKey("chat_threads.id"), nullable=False
     )
     message = Column(Text, nullable=False)
     created_at = Column(TIMESTAMP, nullable=False, server_default=func.now())
@@ -24,4 +24,4 @@ class ChatHistory(Base):
     )
 
     role = relationship("Role")
-    chat_room = relationship("ChatRoom")
+    chat_room = relationship("ChatThreads")
