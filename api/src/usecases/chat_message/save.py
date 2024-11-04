@@ -12,7 +12,7 @@ async def save_chat_message(
     """
     if not chat_thread_id:
         # Insert a new row into chat_thread table
-        new_chat_thread = await create_chat_thread(db)
+        new_chat_thread = await create_chat_thread(db, text)
         chat_thread_id = new_chat_thread.id
 
     # ユーザの質問を保存
