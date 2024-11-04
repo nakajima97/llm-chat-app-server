@@ -5,7 +5,7 @@ from src.schemes.chat import ChatRequest
 from src.usecases.chat_gpt.chat import chat_gpt
 from src.usecases.chat_gpt.sse import stream_generator
 from src.db import get_db
-from src.usecases.chat_history.save import save_chat_history
+from src.usecases.chat_message.save import save_chat_message
 
 router = APIRouter()
 
@@ -16,10 +16,10 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
     チャットを取得する
     """
     text = request.text
-    chat_room_id = request.chat_room_id
+    chat_thread_id = request.chat_thread_id
     message = chat_gpt(text)
 
-    await save_chat_history(db, chat_room_id, text, message)
+    await save_chat_message(db, chat_thread_id, text, message)
 
     return {"chat": message}
 
@@ -32,7 +32,7 @@ async def get_chat_sse(
     SSEで回答する
     """
     text = request.text
-    chat_room_id = request.chat_room_id
+    chat_thread_id = request.chat_thread_id
     stream = stream_generator(text)
 
     # DBにチャット履歴を保存するためにstreamをイベントジェネレータに変換
@@ -42,6 +42,6 @@ async def get_chat_sse(
             response += chunk
             yield chunk
         # streamが終了したらDBにチャット履歴を保存
-        await save_chat_history(db, chat_room_id, text, response)
+        await save_chat_message(db, chat_thread_id, text, response)
 
     return StreamingResponse(event_generator(), media_type="text/plain")

@@ -14,7 +14,7 @@ class ChatMessage(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     role_id = Column(BigInteger, ForeignKey("roles.id"), nullable=False)
-    chat_room_id = Column(
+    chat_thread_id = Column(
         UUID(as_uuid=True), ForeignKey("chat_threads.id"), nullable=False
     )
     message = Column(Text, nullable=False)
@@ -24,4 +24,4 @@ class ChatMessage(Base):
     )
 
     role = relationship("Role")
-    chat_room = relationship("ChatThreads")
+    chat_thread = relationship("ChatThreads")

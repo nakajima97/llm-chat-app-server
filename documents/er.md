@@ -12,7 +12,7 @@ roles {
 chat_messages {
   uuid id PK
   int role_id FK "ロールID"
-  uuid chat_room_id FK "チャットルームID"
+  uuid chat_thread_id FK "チャットルームID"
   text message "メッセージ"
   timestamp created_at "作成日"
   timestamp updated_at "更新日"
