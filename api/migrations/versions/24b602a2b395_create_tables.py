@@ -38,12 +38,12 @@ def upgrade() -> None:
         "chat_messages",
         sa.Column("id", sa.UUID(), nullable=False),
         sa.Column("role_id", sa.BigInteger(), nullable=False),
-        sa.Column("chat_room_id", sa.UUID(), nullable=False),
+        sa.Column("chat_thread_id", sa.UUID(), nullable=False),
         sa.Column("message", sa.Text(), nullable=False),
         sa.Column("created_at", sa.TIMESTAMP(), nullable=False),
         sa.Column("updated_at", sa.TIMESTAMP(), nullable=False),
         sa.ForeignKeyConstraint(
-            ["chat_room_id"],
+            ["chat_thread_id"],
             ["chat_threads.id"],
         ),
         sa.ForeignKeyConstraint(
