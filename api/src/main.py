@@ -10,6 +10,7 @@ add_cors_middleware(app)
 app.include_router(chat.router)
 app.include_router(threads.router)
 
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}

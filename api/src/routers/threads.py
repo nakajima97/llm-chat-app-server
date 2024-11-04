@@ -1,10 +1,11 @@
 from fastapi import APIRouter
 
 router = APIRouter(
-  prefix="/threads",
-  tags=["threads"],
+    prefix="/threads",
+    tags=["threads"],
 )
+
 
 @router.get("/")
 async def get_threads():
-  return {"threads": "threads"}
+    return {"threads": "threads"}
