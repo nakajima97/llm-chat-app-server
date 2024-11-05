@@ -1,5 +1,5 @@
 ## ファイル説明
-### class_diagram.md
+### graph.md
 - api/src配下にあるファイルのクラス図
 - github copilotによって作成されている
 - プロンプトは以下
