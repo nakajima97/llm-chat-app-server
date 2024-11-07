@@ -14,9 +14,12 @@ async def create_chat_message(
     await db.commit()
     return new_chat_message
 
+
 async def get_messages_by_thread_id(db: AsyncSession, thread_id):
     # return db.query(ChatMessage).filter_by(thread_id=thread_id).order_by(ChatMessage.created_at.desc()).all()
     result = await db.execute(
-        select(ChatMessage).filter(ChatMessage.chat_thread_id == thread_id).order_by(ChatMessage.created_at.desc())
+        select(ChatMessage)
+        .filter(ChatMessage.chat_thread_id == thread_id)
+        .order_by(ChatMessage.created_at.desc())
     )
     return result.scalars().all()
