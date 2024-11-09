@@ -31,7 +31,7 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
     return {"data": {"thread_id": chat_thread_id, "content": message}}
 
 
-@router.get("/chat/sse", tags=["chat"])
+@router.get("/chat/sse", tags=["chat"], response_model=ChatResponse)
 async def get_chat_sse(
     request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)
 ):
