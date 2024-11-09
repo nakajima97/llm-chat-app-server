@@ -1,3 +1,4 @@
+import json
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -46,17 +47,22 @@ async def get_chat_sse(
 
     # スレッドIDがない場合は新規作成
     if not chat_thread_id:
-        chat_thread_id = uuid.uuid4()
+        chat_thread_id = await generate_thread(db, chat_thread_id, text)
 
     # DBにチャット履歴を保存するためにstreamをイベントジェネレータに変換
     async def event_generator():
         response = ""
         async for chunk in stream:
             response += chunk
-            yield {"data": {
-                "thread_id": chat_thread_id,
+
+            # SSE形式に変換
+            data = json.dumps({
+                "thread_id": str(chat_thread_id),
                 "content": response
-            }}
+            })
+
+            yield f"data: {data}\n\n"
+
         # streamが終了したらDBにチャット履歴を保存
         await save_chat_message(db, chat_thread_id, text, response)
 
