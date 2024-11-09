@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.schemes.chat import ChatRequest
+from src.schemes.chat import ChatRequest, ChatResponse
 from src.usecases.chat_thread.generate_thread import generate_thread
 from src.usecases.chat_gpt.chat import chat_gpt
 from src.usecases.chat_gpt.sse import stream_generator
@@ -13,7 +13,7 @@ from src.usecases.chat_message.save import save_chat_message
 router = APIRouter()
 
 
-@router.get("/chat", tags=["chat"])
+@router.get("/chat", tags=["chat"], response_model=ChatResponse)
 async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_db)):
     """
     チャットを取得する
