@@ -28,6 +28,4 @@ def generate_title(user_message: str):
     # OpenAIのAPIにこのプロンプトを送信するためのチェーンを作成
     chain = prompt | llm | output_parser
 
-    return chain.invoke(
-        {"user_message": user_message}
-    )
+    return chain.invoke({"user_message": user_message})

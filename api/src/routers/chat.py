@@ -28,10 +28,7 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
 
     await save_chat_message(db, chat_thread_id, text, message)
 
-    return {"data": {
-        "thread_id": chat_thread_id,
-        "content": message
-    }}
+    return {"data": {"thread_id": chat_thread_id, "content": message}}
 
 
 @router.get("/chat/sse", tags=["chat"])
@@ -56,10 +53,7 @@ async def get_chat_sse(
             response += chunk
 
             # SSE形式に変換
-            data = json.dumps({
-                "thread_id": str(chat_thread_id),
-                "content": response
-            })
+            data = json.dumps({"thread_id": str(chat_thread_id), "content": response})
 
             yield f"data: {data}\n\n"
 
