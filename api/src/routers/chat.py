@@ -42,8 +42,6 @@ async def get_chat_sse(
     chat_thread_id = request.thread_id
     stream = stream_generator(text)
 
-    print('chat_thread_id', chat_thread_id)
-
     # スレッドIDがない場合は新規作成
     if not chat_thread_id:
         chat_thread_id = await generate_thread(db, chat_thread_id, text)
