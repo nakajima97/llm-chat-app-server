@@ -39,7 +39,7 @@ async def get_chat_sse(
     SSEで回答する
     """
     text = request.text
-    chat_thread_id = request.chat_thread_id
+    chat_thread_id = request.thread_id
     stream = stream_generator(text)
 
     # スレッドIDがない場合は新規作成
