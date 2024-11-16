@@ -20,6 +20,6 @@ async def get_messages_by_thread_id(db: AsyncSession, thread_id):
     result = await db.execute(
         select(ChatMessage)
         .filter(ChatMessage.chat_thread_id == thread_id)
-        .order_by(ChatMessage.created_at.desc())
+        .order_by(ChatMessage.created_at.asc())
     )
     return result.scalars().all()
