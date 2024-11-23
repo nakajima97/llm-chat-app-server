@@ -10,7 +10,9 @@ from src.usecases.chat_gpt.chat import chat_gpt
 from src.usecases.chat_gpt.sse import stream_generator
 from src.db import get_db
 from src.usecases.chat_message.save import save_chat_message
-from src.usecases.chat_gpt.fetch_and_format_chat_messages import fetch_and_format_chat_messages
+from src.usecases.chat_gpt.fetch_and_format_chat_messages import (
+    fetch_and_format_chat_messages,
+)
 
 router = APIRouter()
 

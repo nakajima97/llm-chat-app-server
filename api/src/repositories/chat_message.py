@@ -23,6 +23,7 @@ async def get_messages_by_thread_id(db: AsyncSession, thread_id):
     )
     return result.scalars().all()
 
+
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.models.chat_message import ChatMessage

@@ -5,6 +5,7 @@ from src.constants import ChatRoleId
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
+
 async def fetch_and_format_chat_messages(db: AsyncSession, thread_id: str):
     """
     スレッドIDをもとにDBからチャット一覧を取得してLangChainで使える形に変換する
