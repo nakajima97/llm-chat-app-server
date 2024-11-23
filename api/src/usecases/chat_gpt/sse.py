@@ -4,7 +4,7 @@ from src.services.openai_service import get_chat_model
 
 
 # astreamを用いてストリームする
-async def stream_generator(question: str):
+async def stream_generator(messages: list):
     """
     OpenAIのGPT-4o-miniを使って文章をstreamで生成する
     """
@@ -13,7 +13,7 @@ async def stream_generator(question: str):
     model = get_chat_model()
 
     # プロンプトのテンプレート文章を定義
-    prompt = ChatPromptTemplate.from_template("{question}")
+    prompt = ChatPromptTemplate.from_messages(messages)
 
     # 出力パーサーを定義
     parser = StrOutputParser()
@@ -22,6 +22,6 @@ async def stream_generator(question: str):
     chain = prompt | model | parser
 
     # astreamでストリーミングを開始
-    async for chunk in chain.astream({"question": question}):
+    async for chunk in chain.astream({}):
         # 出力結果をコンソールに出力
         yield chunk

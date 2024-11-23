@@ -2,6 +2,7 @@ import json
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
+from langchain.schema import HumanMessage
 
 from src.schemes.chat import ChatRequest, ChatResponse
 from src.usecases.chat_thread.generate_thread import generate_thread
@@ -9,6 +10,9 @@ from src.usecases.chat_gpt.chat import chat_gpt
 from src.usecases.chat_gpt.sse import stream_generator
 from src.db import get_db
 from src.usecases.chat_message.save import save_chat_message
+from src.usecases.chat_gpt.fetch_and_format_chat_messages import (
+    fetch_and_format_chat_messages,
+)
 
 router = APIRouter()
 
@@ -40,7 +44,15 @@ async def get_chat_sse(
     """
     text = request.text
     chat_thread_id = request.thread_id
-    stream = stream_generator(text)
+
+    # DBから過去のやり取りを取得する
+    formatted_messages = await fetch_and_format_chat_messages(db, chat_thread_id)
+
+    # GETリクエストで送られてきたtextをHumanMessageに変換して追加
+    formatted_messages.append(HumanMessage(content=text))
+
+    # 回答のstreamを生成する
+    stream = stream_generator(formatted_messages)
 
     # スレッドIDがない場合は新規作成
     if not chat_thread_id:

@@ -2,6 +2,7 @@
 erDiagram
 
 chat_threads ||--|{ chat_messages : ""
+chat_threads ||--|{ chat_summaries : ""
 roles ||--|{ chat_messages : ""
 
 roles {
@@ -18,10 +19,17 @@ chat_messages {
   timestamp updated_at "更新日"
 }
 
+chat_summaries {
+  uuid id PK
+  uuid chat_thread_id FK "チャットルームID"
+  text summary "会話サマリー"
+  timestamp created_at "作成日"
+  timestamp updated_at "更新日"
+}
+
 chat_threads {
   uuid id PK
   timestamp created_at "作成日"
   timestamp updated_at "更新日"
 }
-
 ```
