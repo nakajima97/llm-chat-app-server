@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from src.services.openai_service import get_chat_model
 
 
-def chat_gpt(sentence):
+def generate_chat_response(sentence):
     """
     OpenAIのGPT-4o-miniを使って文章を生成する
     """

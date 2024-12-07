@@ -6,10 +6,10 @@ from langchain.schema import HumanMessage
 
 from src.schemes.chat import ChatRequest, ChatResponse
 from src.usecases.chat_thread.generate_thread import generate_thread
-from src.usecases.chat_gpt.chat import chat_gpt
-from src.usecases.chat_gpt.sse import stream_generator
+from src.usecases.chat_gpt.generate_chat_response import generate_chat_response
+from src.usecases.chat_gpt.streaming_chat_responses import streaming_chat_responses
 from src.db import get_db
-from src.usecases.chat_message.save import save_chat_message
+from src.usecases.chat_message.save_chat_message import save_chat_message
 from src.usecases.chat_gpt.fetch_and_format_chat_messages import (
     fetch_and_format_chat_messages,
 )
@@ -24,7 +24,7 @@ async def get_chat(request=Depends(ChatRequest), db: AsyncSession = Depends(get_
     """
     text = request.text
     chat_thread_id = request.chat_thread_id
-    message = chat_gpt(text)
+    message = generate_chat_response(text)
 
     # スレッドIDがない場合は新規作成
     if not chat_thread_id:
@@ -52,7 +52,7 @@ async def get_chat_sse(
     formatted_messages.append(HumanMessage(content=text))
 
     # 回答のstreamを生成する
-    stream = stream_generator(formatted_messages)
+    stream = streaming_chat_responses(formatted_messages)
 
     # スレッドIDがない場合は新規作成
     if not chat_thread_id:
