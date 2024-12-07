@@ -4,7 +4,7 @@ from src.services.openai_service import get_chat_model
 
 
 # astreamを用いてストリームする
-async def stream_generator(messages: list):
+async def streaming_chat_responses(messages: list):
     """
     OpenAIのGPT-4o-miniを使って文章をstreamで生成する
     """
