@@ -1,5 +1,5 @@
 ## ファイル説明
-### graph.md
+### file_relation.md
 - api/src配下にあるファイル間のインポート関係を図式化したもの
 - github copilotによって作成されている
 - プロンプトは以下
