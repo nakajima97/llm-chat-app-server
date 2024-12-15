@@ -5,6 +5,7 @@ import os
 from uuid import uuid4
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
+from src.config import Config
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
@@ -19,9 +20,6 @@ def save_chroma(content: str):
         成功すればUUID, 失敗すればNone
     """
     try:
-        if not os.environ.get("OPENAI_API_KEY"):
-            os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
-
         embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
 
         vector_store = Chroma(
