@@ -8,7 +8,7 @@ router = APIRouter(
 )
 
 
-@router.post("/")
-async def save_text(request=Depends(SavaTextRequest)):
+@router.post("/", response_model=SavaTextResponse)
+async def save_text(request: SavaTextRequest):
   save_vector_store(request.content)
   return {"result": "success"}
