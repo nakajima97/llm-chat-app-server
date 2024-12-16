@@ -20,3 +20,12 @@ services:
       - "5432:5432"
     volumes:
       - ./postgres:/var/lib/postgresql/data
+  chromadb:
+    image: chromadb/chroma
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./chromadb:/path/to/data
+    environment:
+      - CHROMADB_USER=user
+      - CHROMADB_PASSWORD=password
