@@ -7,6 +7,7 @@ from langchain_openai import OpenAIEmbeddings
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
 
+
 def save_chroma(content: str):
     """
     与えられたテキストをChromaDBに保存する関数。
@@ -33,7 +34,9 @@ def save_chroma(content: str):
             id=document_id,
         )
 
-        vector_store.add_documents(documents=[document], ids=[document_id])  #  idsとdocumentsの要素数を合わせる
+        vector_store.add_documents(
+            documents=[document], ids=[document_id]
+        )  #  idsとdocumentsの要素数を合わせる
         logging.info(f"Document added with UUID: {document_id}")
         return document_id
 
