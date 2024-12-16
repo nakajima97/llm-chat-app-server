@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from src.usecases.vector_store.save_vector_store import save_vector_store
 from src.schemes.rag import SavaTextRequest, SavaTextResponse
 
