@@ -1,5 +1,6 @@
-from src.schemes.rag import SavaTextRequest, SavaTextResponse
 from fastapi import APIRouter, Depends
+from src.usecases.vector_store.save_vector_store import save_vector_store
+from src.schemes.rag import SavaTextRequest, SavaTextResponse
 
 router = APIRouter(
   prefix="/rag",
@@ -7,6 +8,7 @@ router = APIRouter(
 )
 
 
-@router.post("/", response_model=SavaTextResponse)
+@router.post("/")
 async def save_text(request=Depends(SavaTextRequest)):
-  return {"message": "Hello World"}
+  save_vector_store(request.content)
+  return {"result": "success"}

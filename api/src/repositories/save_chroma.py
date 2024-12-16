@@ -1,11 +1,8 @@
 import logging
 from langchain_chroma import Chroma
-import getpass
-import os
 from uuid import uuid4
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
-from src.config import Config
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
