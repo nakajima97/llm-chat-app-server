@@ -166,3 +166,4 @@ postgres
 
 # Ignore ChromeDB's directory
 chromadb/
+chroma_langchain_db/
