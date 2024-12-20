@@ -3,6 +3,8 @@ from langchain_chroma import Chroma
 from uuid import uuid4
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
+from chromadb import HttpClient
+from src.config import Config
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
@@ -23,7 +25,11 @@ def save_chroma(content: str):
         vector_store = Chroma(
             collection_name="example_collection",
             embedding_function=embeddings,
-            persist_directory="./chroma_langchain_db",
+            client=HttpClient(
+                host=Config.CHROMA_HOST,
+                port=Config.CHROMA_PORT,
+                ssl=Config.CHROMA_SSL.lower() == "true",
+            ),
         )
 
         # UUID を1つだけ生成して再利用
