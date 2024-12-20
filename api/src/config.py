@@ -12,3 +12,6 @@ class Config:
     DB_PASSWORD = os.environ.get("DB_PASSWORD")
     DB_NAME = os.environ.get("DB_NAME")
     DB_PORT = os.environ.get("DB_PORT")
+    CHROMA_HOST = os.environ.get("CHROMA_HOST")
+    CHROMA_PORT = os.environ.get("CHROMA_PORT")
+    CHROMA_SSL = os.environ.get("CHROMA_SSL")
