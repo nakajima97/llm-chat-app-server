@@ -29,7 +29,7 @@ def save_chroma(content: str):
                 host=Config.CHROMA_HOST,
                 port=Config.CHROMA_PORT,
                 ssl=Config.CHROMA_SSL.lower() == "true",
-            )
+            ),
         )
 
         # UUID を1つだけ生成して再利用
