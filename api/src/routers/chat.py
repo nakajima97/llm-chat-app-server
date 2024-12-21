@@ -2,7 +2,6 @@ import json
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
-from langchain.schema import HumanMessage
 
 from src.schemes.chat import ChatRequest, ChatResponse
 from src.usecases.chat_thread.generate_thread import generate_thread

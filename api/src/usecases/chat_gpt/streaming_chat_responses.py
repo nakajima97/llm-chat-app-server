@@ -4,24 +4,29 @@ from src.services.openai_service import get_chat_model
 from src.repositories.query_chroma import query_chroma
 from langchain.schema import HumanMessage
 
+
 # astreamを用いてストリームする
 async def streaming_chat_responses(histories: list, question: str):
     """
     OpenAIのGPT-4o-miniを使って文章をstreamで生成する
     """
     result = query_chroma(question)
-    context = '\n'.join(result)
+    context = "\n".join(result)
 
     # チャットモデルのインスタンスを作成
     model = get_chat_model()
 
-    histories.append(HumanMessage(content=f'''
+    histories.append(
+        HumanMessage(
+            content=f"""
 以下の文脈をもとに質問に回答してください
 
 {context}
 
 質問: {question}
-'''))
+"""
+        )
+    )
 
     # プロンプトのテンプレート文章を定義
     prompt = ChatPromptTemplate.from_messages(histories)
