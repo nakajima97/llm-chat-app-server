@@ -49,10 +49,10 @@ async def get_chat_sse(
     formatted_messages = await fetch_and_format_chat_messages(db, chat_thread_id)
 
     # GETリクエストで送られてきたtextをHumanMessageに変換して追加
-    formatted_messages.append(HumanMessage(content=text))
+    # formatted_messages.append(HumanMessage(content=text))
 
     # 回答のstreamを生成する
-    stream = streaming_chat_responses(formatted_messages)
+    stream = streaming_chat_responses(formatted_messages, text)
 
     # スレッドIDがない場合は新規作成
     if not chat_thread_id:
