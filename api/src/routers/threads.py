@@ -33,6 +33,7 @@ async def delete_thread(thread_id: uuid.UUID, db: AsyncSession = Depends(get_db)
     await delete_chat_thread(db, thread_id)
     return {"message": "Thread deleted successfully"}
 
+
 @router.delete("/")
 async def delete_all_thread(db: AsyncSession = Depends(get_db)):
     await delete_all_chat_threads(db)
