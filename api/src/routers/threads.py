@@ -8,6 +8,7 @@ from src.usecases.chat_thread.get_chat_messages_by_thread_id import (
     get_chat_messages_by_thread_id,
 )
 from src.usecases.chat_thread.delete_chat_thread import delete_chat_thread
+from src.usecases.chat_thread.delete_all_chat_threads import delete_all_chat_threads
 
 router = APIRouter(
     prefix="/threads",
@@ -31,3 +32,9 @@ async def get_thread(thread_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
 async def delete_thread(thread_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     await delete_chat_thread(db, thread_id)
     return {"message": "Thread deleted successfully"}
+
+
+@router.delete("/")
+async def delete_all_thread(db: AsyncSession = Depends(get_db)):
+    await delete_all_chat_threads(db)
+    return {"message": "All threads deleted successfully"}

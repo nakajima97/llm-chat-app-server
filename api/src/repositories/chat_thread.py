@@ -30,3 +30,13 @@ async def delete_chat_thread_by_id(db: AsyncSession, thread_id: uuid.UUID) -> No
     )
     await db.execute(stmt)
     await db.commit()
+
+
+async def delete_all_chat_thread(db: AsyncSession) -> None:
+    stmt = (
+        update(ChatThreads)
+        .where(ChatThreads.deleted_at.is_(None))
+        .values(deleted_at=func.now())
+    )
+    await db.execute(stmt)
+    await db.commit()
