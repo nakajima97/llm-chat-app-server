@@ -26,6 +26,7 @@ async def get_thread(thread_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     threads = await get_chat_messages_by_thread_id(db, thread_id)
     return threads
 
+
 @router.delete("/{thread_id}")
 async def delete_thread(thread_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     await delete_chat_thread(db, thread_id)

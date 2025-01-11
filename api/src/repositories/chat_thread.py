@@ -21,6 +21,7 @@ async def get_chat_threads(db: AsyncSession) -> list[ChatThreads]:
     )
     return result.scalars().all()
 
+
 async def delete_chat_thread_by_id(db: AsyncSession, thread_id: uuid.UUID) -> None:
     stmt = (
         update(ChatThreads)
