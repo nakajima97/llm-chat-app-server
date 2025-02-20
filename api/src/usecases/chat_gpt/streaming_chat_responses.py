@@ -1,6 +1,6 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from src.clients.openai_client import get_chat_model
+from src.clients.openai_client import get_openai_client
 from src.repositories.query_chroma import query_chroma
 from langchain.schema import HumanMessage
 
@@ -14,7 +14,7 @@ async def streaming_chat_responses(histories: list, question: str):
     context = "\n".join(result)
 
     # チャットモデルのインスタンスを作成
-    model = get_chat_model()
+    model = get_openai_client()
 
     histories.append(
         HumanMessage(

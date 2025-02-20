@@ -1,7 +1,7 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
-from src.clients.openai_client import get_chat_model
+from src.clients.openai_client import get_openai_client
 
 
 def generate_title(user_message: str):
@@ -9,7 +9,7 @@ def generate_title(user_message: str):
     OpenAIのGPT-4o-miniを使ってスレッドのタイトルを生成する
     """
     # OpenAIのモデルのインスタンスを作成
-    llm = get_chat_model()
+    llm = get_openai_client()
 
     # チャットメッセージを文字列に変換するための出力解析インスタンスを作成
     output_parser = StrOutputParser()
