@@ -1,7 +1,7 @@
 import logging
 from uuid import uuid4
 from langchain_core.documents import Document
-from src.services.chroma_service import get_chroma_client
+from src.clients.chroma_service import get_chroma_client
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)

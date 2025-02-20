@@ -1,7 +1,7 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
-from src.services.openai_service import get_chat_model
+from src.clients.openai_service import get_chat_model
 
 
 def generate_title(user_message: str):

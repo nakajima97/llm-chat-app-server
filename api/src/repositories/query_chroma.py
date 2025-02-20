@@ -1,4 +1,4 @@
-from src.services.chroma_service import get_chroma_client
+from src.clients.chroma_service import get_chroma_client
 
 
 def query_chroma(query: str, count: int = 3):
