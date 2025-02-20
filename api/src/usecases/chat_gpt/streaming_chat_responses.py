@@ -1,6 +1,6 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from src.clients.openai_service import get_chat_model
+from src.clients.openai_client import get_chat_model
 from src.repositories.query_chroma import query_chroma
 from langchain.schema import HumanMessage
 
