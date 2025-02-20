@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class Config:
+class Env:
     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
     CORS_ORIGIN = os.environ.get("CORS_ORIGIN")
     DB_HOST = os.environ.get("DB_HOST")

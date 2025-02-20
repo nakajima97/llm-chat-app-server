@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 import uuid
 
-from src.db import get_db
+from src.databases.relational.postgresql import get_db
 from src.usecases.chat_thread.read_chat_threads import read_chat_threads
 from src.usecases.chat_thread.get_chat_messages_by_thread_id import (
     get_chat_messages_by_thread_id,

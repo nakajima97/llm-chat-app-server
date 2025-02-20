@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.config import Config
+from src.configs.env import Env
 
 
 def add_cors_middleware(app: FastAPI):
     # 許可するオリジンのリスト
-    origins = Config.CORS_ORIGIN.split(",")
+    origins = Env.CORS_ORIGIN.split(",")
 
     # CORSミドルウェアを追加
     app.add_middleware(

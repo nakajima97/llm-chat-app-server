@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from src.routers import chat
 from src.routers import threads
 from src.routers import rag
-from src.middleware import add_cors_middleware
+from src.middlewares.cors import add_cors_middleware
 
 app = FastAPI()
 

@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.repositories.chat_message import create_chat_message
-from src.constants import ChatRoleId
+from src.configs.constants import ChatRoleId
 
 
 async def save_chat_message(

@@ -1,6 +1,6 @@
 from langchain_openai import OpenAIEmbeddings
 from chromadb import HttpClient
-from src.config import Config
+from src.configs.env import Env
 from langchain_chroma import Chroma
 
 
@@ -11,9 +11,9 @@ def get_chroma_client():
         collection_name="example_collection",
         embedding_function=embeddings,
         client=HttpClient(
-            host=Config.CHROMA_HOST,
-            port=Config.CHROMA_PORT,
-            ssl=Config.CHROMA_SSL.lower() == "true",
+            host=Env.CHROMA_HOST,
+            port=Env.CHROMA_PORT,
+            ssl=Env.CHROMA_SSL.lower() == "true",
         ),
     )
 
