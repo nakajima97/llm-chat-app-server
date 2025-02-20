@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.models.role import Role
-from src.db import db_session
-from src.constants import ChatRoleId
+from src.databases.db import db_session
+from src.configs.constants import ChatRoleId
 
 
 async def seed_roles(db: AsyncSession):

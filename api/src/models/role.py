@@ -1,5 +1,5 @@
 from sqlalchemy import Column, BigInteger, Text
-from src.db import Base
+from src.databases.db import Base
 
 
 class Role(Base):

@@ -1,5 +1,5 @@
 from langchain_openai import ChatOpenAI
-from src.config import Config
+from src.configs.config import Config
 
 
 def get_openai_client():

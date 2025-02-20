@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from langchain.schema import HumanMessage, AIMessage
 
 from src.repositories.chat_message import get_messages_by_thread_id
-from src.constants import ChatRoleId
+from src.configs.constants import ChatRoleId
 
 
 async def fetch_and_format_chat_messages(db: AsyncSession, thread_id: str):

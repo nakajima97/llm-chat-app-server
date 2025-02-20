@@ -1,6 +1,6 @@
 from langchain_openai import OpenAIEmbeddings
 from chromadb import HttpClient
-from src.config import Config
+from src.configs.config import Config
 from langchain_chroma import Chroma
 
 

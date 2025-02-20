@@ -7,7 +7,7 @@ from src.schemes.chat import ChatRequest, ChatResponse
 from src.usecases.chat_thread.generate_thread import generate_thread
 from src.usecases.chat_gpt.generate_chat_response import generate_chat_response
 from src.usecases.chat_gpt.streaming_chat_responses import streaming_chat_responses
-from src.db import get_db
+from src.databases.db import get_db
 from src.usecases.chat_message.save_chat_message import save_chat_message
 from src.usecases.chat_gpt.fetch_and_format_chat_messages import (
     fetch_and_format_chat_messages,

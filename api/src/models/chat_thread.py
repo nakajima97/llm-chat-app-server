@@ -2,7 +2,7 @@ from sqlalchemy import Column, TIMESTAMP, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 import uuid
-from src.db import Base
+from src.databases.db import Base
 
 
 class ChatThreads(Base):
