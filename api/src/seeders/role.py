@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.models.role import Role
-from src.databases.db import db_session
+from src.databases.relational.postgresql import db_session
 from src.configs.constants import ChatRoleId
 
 

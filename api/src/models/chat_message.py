@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
-from src.databases.db import Base
+from src.databases.relational.postgresql import Base
 
 # これがないとRoleが見つからないとエラーが出る
 from src.models.role import Role  # noqa
